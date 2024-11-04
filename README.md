@@ -3,6 +3,8 @@ The only place where slashes mean something other than 'cut here'!
 
 # XPath Tutorials
 
+ - To execute the XPath.robot file, open sampleForm.html on a live server and update the URL with ${URL} in resources/variables/Variable.robot
+
 ## Basic Format of XPath
 ```xpath
 XPath = //tagname[@Attribute='Value']

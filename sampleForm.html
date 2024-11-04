@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Form</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+      }
+    </style>
+</head>
+<body>
+    <h1>Testing Form Elements</h1>
+    <form action="/submit" method="POST">
+        <!-- Text input -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username..">
+        <br><br>
+
+        <!-- Password input -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+        <br><br>
+
+        <!-- Email input -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <br><br>
+
+        <!-- Radio buttons (multiple choices) -->
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+        <br><br>
+
+        <!-- Multiple checkboxes -->
+        <label>Interests:</label><br>
+        <input type="checkbox" id="sports" name="interests" value="sports">
+        <label for="sports">Sports</label>
+        <input type="checkbox" id="music" name="interests" value="music">
+        <label for="music">Music</label>
+        <input type="checkbox" id="travel" name="interests" value="travel">
+        <label for="travel">Travel</label>
+        <input type="checkbox" id="reading" name="interests" value="reading">
+        <label for="reading">Reading</label>
+        <br><br>
+
+        <!-- Number input -->
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="0" max="100" placeholder="Enter your age">
+        <br><br>
+
+        <!-- Date input -->
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+        <br><br>
+
+        <!-- Dropdown select -->
+         <div class="parent of country select" id="parent_of_country_select">
+            <div id="first_child_of_country_select"></div>
+            <div id="second_child_of_country_select">
+                <label for="country" id="country_label">Country:</label>
+                <select id="country" name="country">
+                    <option value="usa">USA</option>
+                    <option value="canada">Canada</option>
+                    <option value="uk">UK</option>
+                </select>
+            </div>
+        </div>
+        <br><br>
+
+        <div class="Parent of select" id="parent_of_select">
+            Parent of select
+            <br>
+            <label for="preferences">Choose your preferences (hold down the Ctrl or Command key to select multiple options):</label>
+            <select id="preferences" name="preferences" multiple>
+                <option value="technology">Technology</option>
+                <option value="science">Science</option>
+                <option value="finance">Finance</option>
+                <option value="health">Health & Wellness</option>
+                <option value="art">Art & Design</option>
+                <option value="environment">Environment</option>
+            </select>
+        </div>
+        <br><br>
+
+        <!-- Textarea -->
+        <label for="bio">Bio:</label>
+        <textarea id="bio" name="bio" placeholder="Tell us about yourself"></textarea>
+        <br><br>
+
+        <!-- File upload -->
+        <label for="profilePic">Profile Picture:</label>
+        <input type="file" id="profilePic" name="profilePic">
+        <br><br>
+
+        <!-- Submit button -->
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
