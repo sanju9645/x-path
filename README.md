@@ -99,6 +99,15 @@ Wait Until Element Is Visible: xpath://label[text()='Profile Picture:']
    Example: //input[contains(@placeholder, 'your username') or @id='username1']
    ```
 
+   Example HTML:
+   ```html
+   <input type="text" id="username" name="username" placeholder="Enter your username..">
+   ```
+
+   Usage:
+   ```xpath
+   Input Text  xpath://input[contains(@placeholder, 'your username') or @id='username1' ]  Tom and Jerry
+   ```
 ---
 
 ## 5 XPath Axes Methods: `parent`, `child`, and `self`
@@ -111,11 +120,21 @@ Wait Until Element Is Visible: xpath://label[text()='Profile Picture:']
    Example: //select[@id='preferences']//parent::div[contains(@id, 'parent_of_select')]
    ```
 
+   Usage:
+   ```xpath
+     Wait Until Element Is Visible  xpath://select[@id='preferences']//parent::div[contains(@id, 'parent_of_select')]
+   ```
+
 2. **child**
    - Selects all children of the current node
    ```xpath
    XPath = //tagname[@Attribute='Value']//child::tagname
    Example: //div[@id='parent_of_select']//child::select[@id='preferences']
+   ```
+   
+   Usage:
+   ```xpath
+       Wait Until Element Is Visible  xpath://div[@id='parent_of_select']//child::select[@id='preferences']
    ```
 
 3. **self**
@@ -125,6 +144,11 @@ Wait Until Element Is Visible: xpath://label[text()='Profile Picture:']
    Example: //div[@id='parent_of_select']//self::div[@class='Parent of select']
    ```
 
+   Usage:
+   ```xpath
+      Wait Until Element Is Visible  xpath://div[@id='parent_of_select']//self::div[@class='Parent of select']
+   ```
+   
 Example HTML:
 ```html
 <div class="Parent of select" id="parent_of_select">
@@ -141,71 +165,196 @@ Example HTML:
 ---
 
 ## 7 XPath Axes Methods: `descendant`, `descendant-or-self`
+     
 1. **descendant**
-   - Selects all descendants of the current node
+   - It selects all descendants (children, grandchildren, etc.) of the context (current) node.
    ```xpath
    XPath = //tagname[@Attribute='Value']//descendant::tagname
    ```
 
 2. **descendant-or-self**
-   - Selects the current node and all of its descendants
+   - It selects context(Current) node and all of its descendants like (children, grandchildren etc) if tagname for descendants and self are same
    ```xpath
    XPath = //tagname[@Attribute='Value']//descendant-or-self::tagname
    ```
 
 Example Usage:
 ```xpath
-Wait Until Element Is Visible: xpath://select[@id='preferences']//descendant::option
-Wait Until Element Is Visible: xpath://div[@id='parent_of_select']//descendant-or-self::*
+  # Use descendant to locate all option tags within select#preferences
+  Wait Until Element Is Visible  xpath://select[@id='preferences']//descendant::option
+    
+  # Use descendant-or-self to locate 'parent_of_select' div and all descendants
+  Wait Until Element Is Visible  xpath://div[@id='parent_of_select']//descendant-or-self::*
+  Wait Until Element Is Visible  xpath://div[@id='parent_of_select']//descendant-or-self::option | //div[@id='parent_of_select']//descendant-or-self::label 
+  Wait Until Element Is Visible  xpath://div[@id='parent_of_select']//descendant-or-self::select[@id='preferences']
+```
+
+Example HTML:
+```html
+<div class="Parent of select" id="parent_of_select">
+   Parent of select
+   <br>
+   <label for="preferences">Choose your preferences (hold down the Ctrl or Command key to select multiple options):</label>
+   <select id="preferences" name="preferences" multiple>
+         <option value="technology">Technology</option>
+         <option value="science">Science</option>
+         <option value="finance">Finance</option>
+         <option value="health">Health & Wellness</option>
+         <option value="art">Art & Design</option>
+         <option value="environment">Environment</option>
+   </select>
+</div>
 ```
 
 ---
 
 ## 8 XPath Axes Methods: `ancestor`, `ancestor-or-self`
 1. **ancestor**
-   - Selects all ancestors of the current node
+   - It selects all of the ancestors (parent, grandparent etc) of context (Current) node
    ```xpath
    XPath = //tagname[@Attribute='Value']//ancestor::tagname
    ```
 
 2. **ancestor-or-self**
-   - Selects the current node and all of its ancestors
+   - It selects context(Current) node and all of its ancestors like (parent, grandparent etc) if tagname for ancestors and self are same
    ```xpath
    XPath = //tagname[@Attribute='Value']//ancestor-or-self::tagname
    ```
 
 Example Usage:
 ```xpath
-Wait Until Element Is Visible: xpath://label[@for='preferences']//ancestor::div
+  Wait Until Element Is Visible  xpath://label[@for='preferences']//ancestor::div
+  Wait Until Element Is Visible  xpath://select[@id='preferences']//ancestor-or-self::*
+  Wait Until Element Is Visible  xpath://select[@id='preferences']//ancestor-or-self::div[@id='parent_of_select']
+```
+
+Example HTML:
+```html
+<div class="Parent of select" id="parent_of_select">
+   Parent of select
+   <br>
+   <label for="preferences">Choose your preferences (hold down the Ctrl or Command key to select multiple options):</label>
+   <select id="preferences" name="preferences" multiple>
+         <option value="technology">Technology</option>
+         <option value="science">Science</option>
+         <option value="finance">Finance</option>
+         <option value="health">Health & Wellness</option>
+         <option value="art">Art & Design</option>
+         <option value="environment">Environment</option>
+   </select>
+</div>
 ```
 
 ---
 
 ## 9 XPath Axes Methods: `following`, `following-sibling`
 1. **following**
-   - Selects all nodes after the current node
+   - It selects all the nodes that appear after the context (Current) node
    ```xpath
    XPath = //tagname[@Attribute='Value']//following::tagname
    ```
 
 2. **following-sibling**
-   - Selects all nodes with the same parent after the current node
+   - It selects all of the nodes that have the same parent as the context (Current) node and appear after the context (Current) node 
    ```xpath
    XPath = //tagname[@Attribute='Value']//following-sibling::tagname
    ```
 
+Example Usage:
+```xpath
+   Wait Until Element Is Visible  xpath://div[@id='first_child_of_country_select']//following::label
+   Wait Until Element Is Visible  xpath://div[@id='first_child_of_country_select']//following::html  #Error
+   Wait Until Element Is Not Visible  xpath://div[@id='first_child_of_country_select']//following::html
+
+
+   Wait Until Element Is Visible  xpath://div[@id='second_child_of_country_select']//following-sibling::select[@id='country']
+   Wait Until Element Is Not Visible  xpath://div[@id='second_child_of_country_select']//following-sibling::select[@id='preferences']
+   Wait Until Element Is Not Visible  xpath://div[@id='second_child_of_country_select']//following-sibling::div[@id='first_child_of_country_select']
+   Wait Until Element Is Visible  xpath://div[@id='second_child_of_country_select']//following-sibling::div[@id='first_child_of_country_select']  #Error
+```
+
+Example HTML:
+```html
+<div class="parent of country select" id="parent_of_country_select">
+   <div id="first_child_of_country_select"></div>
+   <div id="second_child_of_country_select">
+         <label for="country" id="country_label">Country:</label>
+         <select id="country" name="country">
+            <option value="usa">USA</option>
+            <option value="canada">Canada</option>
+            <option value="uk">UK</option>
+         </select>
+   </div>
+</div>
+<br><br>
+
+<div class="Parent of select" id="parent_of_select">
+   Parent of select
+   <br>
+   <label for="preferences">Choose your preferences (hold down the Ctrl or Command key to select multiple options):</label>
+   <select id="preferences" name="preferences" multiple>
+         <option value="technology">Technology</option>
+         <option value="science">Science</option>
+         <option value="finance">Finance</option>
+         <option value="health">Health & Wellness</option>
+         <option value="art">Art & Design</option>
+         <option value="environment">Environment</option>
+   </select>
+</div>
+```
 ---
 
 ## 10 XPath Axes Methods: `preceding`, `preceding-sibling`
 1. **preceding**
-   - Selects all nodes before the current node
+   - It selects all the nodes that appear before the context (Current) node
    ```xpath
    XPath = //tagname[@Attribute='Value']//preceding::tagname
    ```
 
 2. **preceding-sibling**
-   - Selects all nodes with the same parent before the current node
+   - It selects all of the nodes that have the same parent as the context (Current) node and appear before the context (Current) node 
    ```xpath
    XPath = //tagname[@Attribute='Value']//preceding-sibling::tagname
    ```
+```
+
+Example Usage:
+```xpath
+  Wait Until Element Is Visible  xpath://div[@id='second_child_of_country_select']//preceding::select[@id="country"]
+  Wait Until Element Is Not Visible  xpath://div[@id='second_child_of_country_select']//preceding::div[@id="first_child_of_country_select"]
+  Wait Until Element Is Not Visible  xpath://div[@id='first_child_of_country_select']//preceding::select[@id="preferences"]
+  Wait Until Element Is Visible  xpath://select[@id='country']//preceding-sibling::div[@id='second_child_of_country_select']  #Error
+  Wait Until Element Is Visible  xpath://select[@id='country']//preceding-sibling::label[@id='country_label']
+```
+
+Example HTML:
+```html
+<div class="parent of country select" id="parent_of_country_select">
+    <div id="first_child_of_country_select"></div>
+    <div id="second_child_of_country_select">
+        <label for="country" id="country_label">Country:</label>
+        <select id="country" name="country">
+            <option value="usa">USA</option>
+            <option value="canada">Canada</option>
+            <option value="uk">UK</option>
+        </select>
+    </div>
+</div>
+<br><br>
+
+<div class="Parent of select" id="parent_of_select">
+    Parent of select
+    <br>
+    <label for="preferences">Choose your preferences (hold down the Ctrl or Command key to select multiple options):</label>
+    <select id="preferences" name="preferences" multiple>
+        <option value="technology">Technology</option>
+        <option value="science">Science</option>
+        <option value="finance">Finance</option>
+        <option value="health">Health & Wellness</option>
+        <option value="art">Art & Design</option>
+        <option value="environment">Environment</option>
+    </select>
+</div>
+<br><br>
+
 ```
