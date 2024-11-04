@@ -22,7 +22,7 @@ Example: //input[@id='first_name'] (RCVAcademy)
 
 ---
 
-## `starts-with()` Function in XPath
+## 1 `starts-with()` Function in XPath
 ```xpath
 XPath = //tagname[starts-with(@Attribute, 'Value')]
 Example: //input[starts-with(@placeholder, 'Enter your username')]
@@ -40,7 +40,7 @@ Input Text: xpath://input[starts-with(@placeholder, 'Enter your username')] (Ano
 
 ---
 
-## `contains()` Function in XPath
+## 2 `contains()` Function in XPath
 ```xpath
 XPath = //tagname[contains(@Attribute, 'Value')]
 Example: //input[contains(@placeholder, 'your username')]
@@ -58,7 +58,7 @@ Input Text: xpath://input[contains(@placeholder, 'your username')] (On Your Left
 
 ---
 
-## `text()` Function in XPath
+## 3 `text()` Function in XPath
 ```xpath
 XPath = //tagname[text()='ActualText']
 Example: //label[text()='Profile Picture:']
@@ -76,7 +76,7 @@ Wait Until Element Is Visible: xpath://label[text()='Profile Picture:']
 
 ---
 
-## AND & OR in XPath
+## 4 AND & OR in XPath
 1. **AND**
    ```xpath
    XPath = //tagname[contains(@Attribute, 'Value') and @Attribute='value']
@@ -101,7 +101,7 @@ Wait Until Element Is Visible: xpath://label[text()='Profile Picture:']
 
 ---
 
-## XPath Axes Methods: `parent`, `child`, and `self`
+## 5 XPath Axes Methods: `parent`, `child`, and `self`
 - Used to locate nodes relative to a specified context node
 
 1. **parent**
@@ -140,7 +140,7 @@ Example HTML:
 
 ---
 
-## XPath Axes Methods: `descendant`, `descendant-or-self`
+## 7 XPath Axes Methods: `descendant`, `descendant-or-self`
 1. **descendant**
    - Selects all descendants of the current node
    ```xpath
@@ -161,7 +161,7 @@ Wait Until Element Is Visible: xpath://div[@id='parent_of_select']//descendant-o
 
 ---
 
-## XPath Axes Methods: `ancestor`, `ancestor-or-self`
+## 8 XPath Axes Methods: `ancestor`, `ancestor-or-self`
 1. **ancestor**
    - Selects all ancestors of the current node
    ```xpath
@@ -181,7 +181,7 @@ Wait Until Element Is Visible: xpath://label[@for='preferences']//ancestor::div
 
 ---
 
-## XPath Axes Methods: `following`, `following-sibling`
+## 9 XPath Axes Methods: `following`, `following-sibling`
 1. **following**
    - Selects all nodes after the current node
    ```xpath
@@ -196,7 +196,7 @@ Wait Until Element Is Visible: xpath://label[@for='preferences']//ancestor::div
 
 ---
 
-## XPath Axes Methods: `preceding`, `preceding-sibling`
+## 10 XPath Axes Methods: `preceding`, `preceding-sibling`
 1. **preceding**
    - Selects all nodes before the current node
    ```xpath
